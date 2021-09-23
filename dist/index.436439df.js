@@ -13165,7 +13165,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _iconsSvg = require("url:../../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-var _fractional = require("fractional");
+var _fractional = require("./../../../node_modules/fractional");
 var _views = require("./views");
 var _viewsDefault = parcelHelpers.interopDefault(_views);
 var _modal = require("../modal");
@@ -13206,7 +13206,7 @@ class RecipeView extends _viewsDefault.default {
 }
 exports.default = new RecipeView();
 
-},{"url:../../img/icons.svg":"iwCpK","fractional":"40qvl","./views":"disO6","../modal":"7wwzC","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"iwCpK":[function(require,module,exports) {
+},{"url:../../img/icons.svg":"iwCpK","./views":"disO6","../modal":"7wwzC","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","./../../../node_modules/fractional":"40qvl"}],"iwCpK":[function(require,module,exports) {
 module.exports = require('./helpers/bundle-url').getBundleURL('8LZRF') + "icons.c097e590.svg";
 
 },{"./helpers/bundle-url":"8YnfL"}],"8YnfL":[function(require,module,exports) {
@@ -13244,7 +13244,58 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"40qvl":[function(require,module,exports) {
+},{}],"disO6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _iconsSvg = require("url:../../img/icons.svg");
+var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
+class Views {
+    _data;
+    _clear() {
+        this._ParentElement.innerHTML = "";
+    }
+    renderSpinner = function() {
+        const spinMarkup = `<div class="spinner">\n  <svg>\n    <use href="${_iconsSvgDefault.default}#icon-loader"></use>\n  </svg>\n  </div>`;
+        this._ParentElement.innerHTML = "";
+        this._ParentElement.insertAdjacentHTML("afterbegin", spinMarkup);
+    };
+    render(data, render = true) {
+        this._data = data;
+        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
+        const markup = this._generateMarkup();
+        if (!render) return markup;
+        this._clear();
+        this._ParentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    update(data) {
+        this._data = data;
+        const newMarkup = this._generateMarkup();
+        const newDom = document.createRange().createContextualFragment(newMarkup);
+        const newElements = Array.from(newDom.querySelectorAll("*"));
+        const curElements = Array.from(this._ParentElement.querySelectorAll("*"));
+        newElements.forEach((newEl, i)=>{
+            const curEl = curElements[i];
+            //update Changed Text
+            if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") curEl.textContent = newEl.textContent;
+            //update changed Attributes
+            if (!newEl.isEqualNode(curEl)) Array.from(newEl.attributes).forEach((attr)=>curEl.setAttribute(attr.name, attr.value)
+            );
+        });
+    }
+    renderError(message = this._Error) {
+        const markup = `<div class="error">\n    <div>\n      <svg>\n        <use href="${_iconsSvgDefault.default}#icon-alert-triangle"></use>\n      </svg>\n    </div>\n    <p>${message}</p>\n  </div>`;
+        this._clear();
+        this._ParentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+    renderMessage(message = this._Message) {
+        const markup = `<div class="recipe">\n      <div class="message">\n        <div>\n          <svg>\n            <use href="${_iconsSvgDefault.default}#icon-smile"></use>\n          </svg>\n        </div>\n        <p>${message}</p>\n      </div>`;
+        this._clear();
+        this._ParentElement.insertAdjacentHTML("afterbegin", markup);
+    }
+}
+exports.default = Views;
+
+},{"url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"40qvl":[function(require,module,exports) {
 /*
 fraction.js
 A Javascript fraction library.
@@ -13497,58 +13548,7 @@ Fraction.primeFactors = function(n) {
 };
 module.exports.Fraction = Fraction;
 
-},{}],"disO6":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _iconsSvg = require("url:../../img/icons.svg");
-var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
-class Views {
-    _data;
-    _clear() {
-        this._ParentElement.innerHTML = "";
-    }
-    renderSpinner = function() {
-        const spinMarkup = `<div class="spinner">\n  <svg>\n    <use href="${_iconsSvgDefault.default}#icon-loader"></use>\n  </svg>\n  </div>`;
-        this._ParentElement.innerHTML = "";
-        this._ParentElement.insertAdjacentHTML("afterbegin", spinMarkup);
-    };
-    render(data, render = true) {
-        this._data = data;
-        if (!data || Array.isArray(data) && data.length === 0) return this.renderError();
-        const markup = this._generateMarkup();
-        if (!render) return markup;
-        this._clear();
-        this._ParentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-    update(data) {
-        this._data = data;
-        const newMarkup = this._generateMarkup();
-        const newDom = document.createRange().createContextualFragment(newMarkup);
-        const newElements = Array.from(newDom.querySelectorAll("*"));
-        const curElements = Array.from(this._ParentElement.querySelectorAll("*"));
-        newElements.forEach((newEl, i)=>{
-            const curEl = curElements[i];
-            //update Changed Text
-            if (!newEl.isEqualNode(curEl) && newEl.firstChild?.nodeValue.trim() !== "") curEl.textContent = newEl.textContent;
-            //update changed Attributes
-            if (!newEl.isEqualNode(curEl)) Array.from(newEl.attributes).forEach((attr)=>curEl.setAttribute(attr.name, attr.value)
-            );
-        });
-    }
-    renderError(message = this._Error) {
-        const markup = `<div class="error">\n    <div>\n      <svg>\n        <use href="${_iconsSvgDefault.default}#icon-alert-triangle"></use>\n      </svg>\n    </div>\n    <p>${message}</p>\n  </div>`;
-        this._clear();
-        this._ParentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-    renderMessage(message = this._Message) {
-        const markup = `<div class="recipe">\n      <div class="message">\n        <div>\n          <svg>\n            <use href="${_iconsSvgDefault.default}#icon-smile"></use>\n          </svg>\n        </div>\n        <p>${message}</p>\n      </div>`;
-        this._clear();
-        this._ParentElement.insertAdjacentHTML("afterbegin", markup);
-    }
-}
-exports.default = Views;
-
-},{"url:../../img/icons.svg":"iwCpK","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc"}],"5K4dh":[function(require,module,exports) {
+},{}],"5K4dh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 class SearchView {
