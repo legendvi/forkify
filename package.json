@@ -5,11 +5,14 @@
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "author": "Vignesh Kumar",
   "license": "ISC",
   "dependencies": {
+    "core-js": "^3.17.3",
+    "fractional": "^1.0.0",
+    "regenerator-runtime": "^0.13.9",
     "saas": "^1.0.0"
   },
   "devDependencies": {
