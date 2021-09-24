@@ -13178,7 +13178,8 @@ class RecipeView extends _viewsDefault.default {
         ).join("")}\n      </ul>\n    </div>\n    <div class="recipe__directions">\n      <h2 class="heading--2">How to cook it</h2>\n      <p class="recipe__directions-text">\n        This recipe was carefully designed and tested by\n        <span class="recipe__publisher">${this._data.publisher}</span>. Please check out\n        directions at their website.\n      </p>\n      <a\n        class="btn--small recipe__btn"\n        href="${this._data.sourceURL}"\n        target="_blank"\n      >\n        <span>Directions</span>\n        <svg class="search__icon">\n          <use href="${_iconsSvgDefault.default}#icon-arrow-right"></use>\n        </svg>\n      </a>\n    </div>`;
     }
     _generateMarkupIngredients(ing) {
-        return `<li class="recipe__ingredient">\n      <svg class="recipe__icon">\n        <use href="${_iconsSvgDefault.default}#icon-check"></use>\n      </svg>\n      <div class="recipe__quantity">${ing.quantity ? ing.quantity.toFixed(2).toString() : ""}</div>\n      <div class="recipe__description">\n        <span class="recipe__unit">${ing.unit}</span>\n        ${ing.description}\n      </div>\n    </li>`;
+        return `<li class="recipe__ingredient">\n      <svg class="recipe__icon">\n        <use href="${_iconsSvgDefault.default}#icon-check"></use>\n      </svg>\n      <div class="recipe__quantity">${//New Fraction(ing.quantity)
+        ing.quantity ? ing.quantity.toFixed(2).toString() : ""}</div>\n      <div class="recipe__description">\n        <span class="recipe__unit">${ing.unit}</span>\n        ${ing.description}\n      </div>\n    </li>`;
     }
     addHandlerEventRender(handler) {
         [

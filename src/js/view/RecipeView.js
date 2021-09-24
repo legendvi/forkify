@@ -1,5 +1,5 @@
 import icons from "url:../../img/icons.svg";
-import { Fraction } from "./../../../node_modules/fractional";
+//import { Fraction } from "./../../../node_modules/fractional";
 import Views from "./views";
 import { updateServings } from "../modal";
 class RecipeView extends Views {
@@ -99,6 +99,7 @@ class RecipeView extends Views {
         <use href="${icons}#icon-check"></use>
       </svg>
       <div class="recipe__quantity">${
+        //New Fraction(ing.quantity)
         ing.quantity ? ing.quantity.toFixed(2).toString() : ""
       }</div>
       <div class="recipe__description">
