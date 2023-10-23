@@ -14,7 +14,7 @@ https://forkifyvicky.netlify.app/
   
 ## Description:
 This is a Recipe finder App which gives you a recipe for the food item searched
-- This App is made using vanila ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E), [Hosting/SaaS](#-hostingsaas) and ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+- This App is made using vanila ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E), `SCSS` and ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
 - This app is a frontend Application with two APIs.
 -  A `GET` api integration to get a list of dishes and recipe that matches the serach term
 - A `POST` api to add new recipe
@@ -29,9 +29,7 @@ This is a Recipe finder App which gives you a recipe for the food item searched
    - To create a recipe and bookmark a recipe Modal is used 
 2. The Bookmarks should be preserved in case browser reloads
    - This is achived by storing all bookmarked recipes IDs in `Local Storage` 
-3. Make CSS 
-   - This project used  ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white) and used its in build media query attributes to make it mobile frienddly
-4. It should be accessable in all browsers and should be production ready
+3. It should be accessable in all browsers and should be production ready
    - This is achived using `parcel` as a bundler to covert ES6 code and generate  a optimized build which is deployed in [Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7) a static website hosting platform
 
       
